@@ -11,6 +11,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddComponent implements OnInit {
   
+  employees:any=[]
+
   close=false;
 
   employee: Employee = new Employee();
@@ -42,7 +44,7 @@ EmpType : any[] = [
     {}
 
   ngOnInit(): void {
-   
+   this.getEmployees();
   }
   
       public frmRegister = this.fb.group({
@@ -93,19 +95,23 @@ EmpType : any[] = [
       console.log(data);
       this.employee=data;
        },
-      (       error: any) => console.log(error));
+      (error: any) => console.log(error));
   }
 
   onSaveClick() {
     if (this.frmRegister.valid) {
       this.dialogRef.close(this.frmRegister.value),
       this.saveEmployee();
-
-      // this.refreshPage();
     }
+    this.employeeService.getEmployeeList().subscribe(data =>{
+      this.employees = data;
+    });
   }
    
-  // refreshPage() {
-  //   window.location.reload();
-  // }
+  private getEmployees(){
+    this.employeeService.getEmployeeList().subscribe(data =>{
+      this.employees = data;
+    });
+  
+  }
 }

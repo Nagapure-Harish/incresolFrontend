@@ -121,8 +121,9 @@ submit(){
   this.employeeService.updateEmployees(this.frmEdit.value).subscribe((data: Employee)=>{
   this.employee = data;
   console.log(data);
-  // this.refreshPage();
-  
+  });
+  this.employeeService.getEmployeeList().subscribe(data =>{
+    this.employees = data;
   });
 }
   
@@ -132,7 +133,9 @@ submit(){
 Delete(id:number){
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
-  // this.refreshPage();
+  });
+  this.employeeService.getEmployeeList().subscribe(data =>{
+    this.employees = data;
   });
 }
 }
