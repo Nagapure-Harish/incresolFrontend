@@ -96,6 +96,9 @@ EmpType : any[] = [
       this.employee=data;
        },
       (error: any) => console.log(error));
+      this.employeeService.getEmployeeList().subscribe(data =>{
+        this.employees = data;
+      });
   }
 
   onSaveClick() {
