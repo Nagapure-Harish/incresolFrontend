@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AddComponent } from '../add/add.component';
+// import { MatDialog } from '@angular/material/dialog';
+// import { AddComponent } from '../add/add.component';
  import { Employee } from '../classes/employee';
  import { EmployeeService } from 'src/app/services/employee.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -37,16 +37,16 @@ EmpType : any[] = [
   
   employee: Employee = new Employee();
   
-  constructor(private dialog: MatDialog , private employeeService:EmployeeService, private fb:FormBuilder ) { }
-openAddEmployeeDialog(): void {
-  const dialogRef = this.dialog.open(AddComponent);
+  constructor( private employeeService:EmployeeService, private fb:FormBuilder ) { }
+// openAddEmployeeDialog(): void {
+//   const dialogRef = this.dialog.open(AddComponent);
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.employees.push(result);
-    }
-  });
-}
+//   dialogRef.afterClosed().subscribe(result => {
+//     if (result) {
+//       this.employees.push(result);
+//     }
+//   });
+// }
 
 public frmEdit = this.fb.group({
   emp_id:this.fb.control('',[Validators.required]),
@@ -104,11 +104,11 @@ get BP():FormControl{
   ngOnInit(): void {
    this.getEmployees();
   }
+
   private getEmployees(){
     this.employeeService.getEmployeeList().subscribe(data =>{
       this.employees = data;
     });
-  
   }
 
 
@@ -138,6 +138,38 @@ Delete(id:number){
     this.employees = data;
   });
 }
+
+
+save(){
+  this.employeeService.createEmployee(this.frmEdit.value).subscribe((data:Employee)=>{
+    console.log(data);
+    this.employee=data;
+});
+this.employeeService.getEmployeeList().subscribe(data=>{
+this.employees = data;
+});
+}
+// saveEmployee(){
+//   this.employeeService.createEmployee(this.frmEdit.value).subscribe( (data: Employee) =>{
+//     console.log(data);
+//     this.employee=data;
+//      },
+//     (error: any) => console.log(error));
+//     this.employeeService.getEmployeeList().subscribe(data =>{
+//       this.employees = data;
+//     });
+// }
+
+// onSaveClick() {
+//   // if (this.frmRegister.valid) {
+//   //   this.dialogRef.close(this.frmRegister.value),
+//   //   this.saveEmployee();
+//   // }
+//   this.employeeService.getEmployeeList().subscribe(data =>{
+//     this.employees = data;
+//   });
+// }
+
 }
 
 

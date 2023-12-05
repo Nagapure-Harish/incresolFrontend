@@ -32,7 +32,7 @@ import { OrganizationComponent } from './components/organization/organization.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { AddComponent } from './components/add/add.component';
+// import { AddComponent } from './components/add/add.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadComponent } from './components/file-upload-list/file-upload.component';
@@ -59,7 +59,7 @@ import { RegisterUserComponent } from './components/registeruser/register-user/r
 
     OrganizationComponent,
     LayoutComponent,
-    AddComponent,
+    // AddComponent,
     EmployeeListComponent,
     
     FileUploadComponent,
